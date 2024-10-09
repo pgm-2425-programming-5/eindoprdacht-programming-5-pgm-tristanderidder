@@ -1,0 +1,68 @@
+[
+  {
+    "id": 1,
+    "name": "Spaghetti Bolognese",
+    "ingredients": [
+      "200g spaghetti",
+      "100g minced beef",
+      "1 onion",
+      "2 cloves garlic",
+      "400g canned tomatoes",
+      "2 tbsp olive oil",
+      "Salt",
+      "Pepper"
+    ],
+    "instructions": [
+      "Cook the spaghetti according to the package instructions.",
+      "Heat the olive oil in a pan and sauté the chopped onion and garlic until translucent.",
+      "Add the minced beef and cook until browned.",
+      "Add the canned tomatoes, salt, and pepper. Simmer for 20 minutes.",
+      "Serve the sauce over the cooked spaghetti."
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Chicken Curry",
+    "ingredients": [
+      "500g chicken breast",
+      "1 onion",
+      "2 cloves garlic",
+      "1 tbsp ginger",
+      "2 tbsp curry powder",
+      "400ml coconut milk",
+      "2 tbsp vegetable oil",
+      "Salt",
+      "Pepper"
+    ],
+    "instructions": [
+      "Cut the chicken breast into bite-sized pieces.",
+      "Heat the vegetable oil in a pan and sauté the chopped onion, garlic, and ginger until fragrant.",
+      "Add the chicken pieces and cook until browned.",
+      "Add the curry powder and cook for another minute.",
+      "Pour in the coconut milk, salt, and pepper. Simmer for 15-20 minutes.",
+      "Serve with rice."
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Vegetable Stir Fry",
+    "ingredients": [
+      "1 bell pepper",
+      "1 carrot",
+      "100g broccoli",
+      "1 onion",
+      "2 cloves garlic",
+      "2 tbsp soy sauce",
+      "1 tbsp sesame oil",
+      "Salt",
+      "Pepper"
+    ],
+    "instructions": [
+      "Chop all the vegetables into bite-sized pieces.",
+      "Heat the sesame oil in a pan and sauté the chopped onion and garlic until translucent.",
+      "Add the bell pepper, carrot, and broccoli. Stir fry for 5-7 minutes.",
+      "Add the soy sauce, salt, and pepper. Cook for another 2 minutes.",
+      "Serve hot."
+    ]
+  }
+]

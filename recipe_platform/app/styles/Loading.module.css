@@ -1,0 +1,9 @@
+/* app/Loading.module.css */
+
+.loading {
+    text-align: center;
+    padding: 50px;
+    font-size: 1.5rem;
+    color: #555;
+  }
+  

@@ -1,0 +1,28 @@
+/* app/Error.module.css */
+
+.error {
+    text-align: center;
+    padding: 50px;
+    color: #d8000c;
+    background-color: #ffbaba;
+    border: 1px solid #d8000c;
+    border-radius: 5px;
+    max-width: 600px;
+    margin: 50px auto;
+  }
+  
+  .button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    background-color: #d8000c;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    margin-top: 20px;
+  }
+  
+  .button:hover {
+    background-color: #a70000;
+  }
+  

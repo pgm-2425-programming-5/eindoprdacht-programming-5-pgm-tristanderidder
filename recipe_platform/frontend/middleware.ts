@@ -17,8 +17,8 @@ export default withAuth(
   {
     callbacks: {
       authorized: ({ req, token }) => {
-        // Protect all routes under /dashboard
-        if (req.nextUrl.pathname.startsWith("/dashboard")) {
+        // Protect all routes under /recipe
+        if (req.nextUrl.pathname.startsWith("/recipe")) {
           console.log("Checking if user is authorized to access this route");
           console.log("Token:", token);
           if (!token) {

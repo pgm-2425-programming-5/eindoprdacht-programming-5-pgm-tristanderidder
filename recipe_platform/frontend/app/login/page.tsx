@@ -30,6 +30,20 @@ const Login: React.FC = () => {
     }
   };
 
+  const handleLoginWithGitHub = async () => {
+    const res = await signIn("github", { redirect: false });
+    if (!res?.error) {
+      router.push("/home");
+    }
+  };
+
+  const handleLoginWithGoogle = async () => {
+    const res = await signIn("google", { redirect: false });
+    if (!res?.error) {
+      router.push("/home");
+    }
+  };
+
   return (
     <div className="max-w-md mx-auto p-8 bg-gradient-to-b from-gray-200 to-gray-300 rounded-xl shadow-lg">
       <h1 className="text-3xl font-serif font-bold text-center text-gray-900 mb-6">
@@ -75,6 +89,30 @@ const Login: React.FC = () => {
         </button>
       </form>
       <hr className="my-6 border-gray-300" />
+      <button
+        onClick={handleLoginWithGitHub}
+        style={{
+          padding: "0.5rem 1rem",
+          backgroundColor: "#333",
+          color: "#fff",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        Login with GitHub
+      </button>
+      <button
+        onClick={handleLoginWithGoogle}
+        style={{
+          padding: "0.5rem 1rem",
+          backgroundColor: "#333",
+          color: "#fff",
+          border: "none",
+          cursor: "pointer",
+        }}
+      >
+        Login with Google
+      </button>
     </div>
   );
 };

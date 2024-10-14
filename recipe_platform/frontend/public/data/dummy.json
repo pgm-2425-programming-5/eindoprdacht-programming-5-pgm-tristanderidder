@@ -21,7 +21,18 @@
         "Serve the sauce over the cooked spaghetti."
       ],
       "rating": 4.5,
-      "category": "Italian"
+      "category": "Italian",
+      "equipment": ["Pot", "Pan", "Wooden spoon", "Knife", "Cutting board"],
+      "comments": [
+        {
+          "user": "John Doe",
+          "message": "This recipe is fantastic!"
+        },
+        {
+          "user": "Jane Smith",
+          "message": "Loved it! My family enjoyed it."
+        }
+      ]
     },
     {
       "id": 2,
@@ -46,7 +57,18 @@
         "Serve with rice."
       ],
       "rating": 4.7,
-      "category": "Indian"
+      "category": "Indian",
+      "equipment": ["Pan", "Knife", "Cutting board", "Wooden spoon"],
+      "comments": [
+        {
+          "user": "John Doe",
+          "message": "This recipe is fantastic!"
+        },
+        {
+          "user": "Jane Smith",
+          "message": "Loved it! My family enjoyed it."
+        }
+      ]
     },
     {
       "id": 3,
@@ -70,7 +92,18 @@
         "Serve hot."
       ],
       "rating": 4.3,
-      "category": "Asian"
+      "category": "Asian",
+      "equipment": ["Pan", "Knife", "Cutting board", "Wooden spoon"],
+      "comments": [
+        {
+          "user": "John Doe",
+          "message": "This recipe is fantastic!"
+        },
+        {
+          "user": "Jane Smith",
+          "message": "Loved it! My family enjoyed it."
+        }
+      ]
     }
   ]
 }

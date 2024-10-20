@@ -1,0 +1,15 @@
+/* app/Home.module.css */
+
+.container {
+    text-align: center;
+  }
+  
+  .container h1 {
+    color: #333;
+  }
+  
+  .container p {
+    color: #666;
+    font-size: 1.2rem;
+  }
+  

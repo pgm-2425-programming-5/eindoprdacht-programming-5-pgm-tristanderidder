@@ -2,27 +2,23 @@
 
 import Link from "next/link";
 
+import styles from "./styles/Navigation.module.css";
+
 export default function Navigation() {
   return (
-    <nav className="p-4 md:p-6">
-      <h1 className="text-2xl md:text-3xl font-bold  text-center mb-4">
-        Flavorelle
-      </h1>
-      <div className="flex justify-center space-x-6">
-        <Link href={"/"}>Notifications</Link>
-        <Link
-          href="/recipes"
-          className="hover:text-blue-400 transition duration-300">
+    <nav className={styles.nav}>
+      <h1 className={styles.title}>Flavorelle</h1>
+      <div className={styles.links}>
+        <Link className={styles.link} href={"/"}>
+          Notifications
+        </Link>
+        <Link className={styles.link} href="/recipes">
           Chat
         </Link>
-        <Link
-          href="/addRecipes"
-          className="hover:text-blue-400 transition duration-300">
+        <Link className={styles.linkColor} href="/addRecipes">
           Add Recipe
         </Link>
-        <Link
-          href="/addRecipes"
-          className="hover:text-blue-400 transition duration-300">
+        <Link className={styles.link} href="/addRecipes">
           Profile
         </Link>
       </div>

@@ -1,0 +1,12 @@
+.card{
+    height: max-content;
+    width: 20%;
+    border: .05rem solid #211C18;
+    border-radius: 1rem;
+    transition: all 0.5s linear;
+}
+
+.card:hover{
+    border: .05rem solid #211C18;
+    box-shadow: 2px 2px 5px 0px rgba(0,0,0,0.2);
+}

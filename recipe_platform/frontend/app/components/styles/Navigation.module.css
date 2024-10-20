@@ -1,0 +1,23 @@
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 2rem;
+}
+
+.nav h1{
+    font-size: 2rem;
+}
+
+.nav .links{
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.nav .links .linkColor{
+    background-color: #211C18;
+    border-radius: 1rem;
+    padding: 1rem 1.5rem;
+    color: #D0BE9A;
+}

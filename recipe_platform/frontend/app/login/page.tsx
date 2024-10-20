@@ -26,21 +26,21 @@ const Login: React.FC = () => {
     if (res?.error) {
       setError("Invalid email or password");
     } else {
-      router.push("/home");
+      router.push("/recipe");
     }
   };
 
   const handleLoginWithGitHub = async () => {
     const res = await signIn("github", { redirect: false });
     if (!res?.error) {
-      router.push("/home");
+      router.push("/recipe");
     }
   };
 
   const handleLoginWithGoogle = async () => {
     const res = await signIn("google", { redirect: false });
     if (!res?.error) {
-      router.push("/home");
+      router.push("/recipe");
     }
   };
 

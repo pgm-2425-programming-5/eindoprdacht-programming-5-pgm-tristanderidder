@@ -35,5 +35,5 @@ export default withAuth(
 
 // Specify the matcher for protected routes
 export const config = {
-  matcher: ["/home/:path*"],
+  matcher: ["/recipe/:path*"],
 };

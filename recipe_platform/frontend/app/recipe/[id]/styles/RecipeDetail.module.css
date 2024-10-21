@@ -1,0 +1,7 @@
+.card{
+        background: linear-gradient(
+        to bottom, 
+        rgba(178, 163, 132, 0.82),
+        rgba(178, 163, 132, 1)
+    );
+}

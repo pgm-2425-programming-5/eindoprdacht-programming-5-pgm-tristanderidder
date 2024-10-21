@@ -13,6 +13,7 @@ const config: Config = {
         secondary: "#211C18",
         tertiary: "#443D32",
         accent: "#FFFDFD",
+        primaryOpacity: "rgba(208, 190, 154, 0.5)",
       },
     },
   },

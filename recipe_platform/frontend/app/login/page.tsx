@@ -6,6 +6,8 @@ import { signIn } from "next-auth/react";
 import { useState, FormEvent } from "react";
 import { useRouter } from "next/navigation";
 
+import styles from "./styles/login.module.css";
+
 const Login: React.FC = () => {
   const router = useRouter();
   const [error, setError] = useState<string | null>(null);
@@ -45,16 +47,11 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="max-w-md mx-auto p-8 bg-gradient-to-b from-gray-200 to-gray-300 rounded-xl shadow-lg">
-      <h1 className="text-3xl font-serif font-bold text-center text-gray-900 mb-6">
-        Login
-      </h1>
+    <div className="flex flex-col m-auto w-3/5 p-8 bg-secondary rounded-xl shadow-lg">
+      <h1 className="text-3xl text-center text-primary mb-6">Login</h1>
       <form onSubmit={handleSubmit}>
         <div className="mb-6">
-          <label
-            htmlFor="email"
-            className="block text-sm font-medium text-gray-800"
-          >
+          <label htmlFor="email" className="block text-sm font-medium">
             Email:
           </label>
           <input
@@ -62,14 +59,12 @@ const Login: React.FC = () => {
             type="email"
             required
             id="email"
-            className="mt-1 block w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            placeholder="E-mail"
+            className="mt-1 block w-full p-4 border border-primary bg-tertiary rounded-md focus:outline-none focus:ring focus:ring-accent placeholder-primaryOpacity"
           />
         </div>
         <div className="mb-6">
-          <label
-            htmlFor="password"
-            className="block text-sm font-medium text-gray-800"
-          >
+          <label htmlFor="password" className="block text-sm font-medium">
             Password:
           </label>
           <input
@@ -77,42 +72,41 @@ const Login: React.FC = () => {
             type="password"
             required
             id="password"
-            className="mt-1 block w-full p-4 border border-gray-300 rounded-md focus:outline-none focus:ring focus:ring-blue-500"
+            placeholder="Password"
+            className="mt-1 block w-full p-4 border border-primary bg-tertiary rounded-md focus:outline-none focus:ring focus:ring-accent placeholder-primaryOpacity"
           />
         </div>
         {error && <p className="text-red-500 text-center mb-4">{error}</p>}
         <button
           type="submit"
-          className="w-full py-3 bg-blue-600 text-white font-semibold rounded-md hover:bg-blue-700 focus:outline-none transition duration-300 ease-in-out"
+          className="w-full py-3 rounded-2xl bg-tertiary text-primary font-semibold hover:bg-primary hover:text-tertiary focus:outline-none transition duration-300 ease-in-out"
         >
           Login
         </button>
       </form>
-      <hr className="my-6 border-gray-300" />
-      <button
-        onClick={handleLoginWithGitHub}
-        style={{
-          padding: "0.5rem 1rem",
-          backgroundColor: "#333",
-          color: "#fff",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        Login with GitHub
-      </button>
-      <button
-        onClick={handleLoginWithGoogle}
-        style={{
-          padding: "0.5rem 1rem",
-          backgroundColor: "#333",
-          color: "#fff",
-          border: "none",
-          cursor: "pointer",
-        }}
-      >
-        Login with Google
-      </button>
+      <hr className="my-6 border-primary" />
+      <div className="flex gap-8 justify-center">
+        <button
+          onClick={handleLoginWithGitHub}
+          style={{
+            padding: "1rem 1.5rem",
+            cursor: "pointer",
+          }}
+          className="rounded-2xl bg-tertiary text-primary hover:bg-primary hover:text-tertiary transition duration-300 ease-in-out"
+        >
+          Login with GitHub
+        </button>
+        <button
+          onClick={handleLoginWithGitHub}
+          style={{
+            padding: "1rem 1.5rem",
+            cursor: "pointer",
+          }}
+          className="rounded-2xl bg-tertiary text-primary hover:bg-primary hover:text-tertiary transition duration-300 ease-in-out"
+        >
+          Login with Google
+        </button>
+      </div>
     </div>
   );
 };

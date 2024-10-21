@@ -19,13 +19,8 @@ export default async function RecipePage() {
 
     return (
       <div>
-        <div>
+        <div className={`flex`}>
           <RecipeFilter recipes={recipes} />
-        </div>
-        <div>
-          {recipes.map((recipe) => (
-            <RecipeItem key={recipe.id} recipe={recipe} />
-          ))}
         </div>
       </div>
     );

@@ -3,6 +3,7 @@
     {
       "id": 1,
       "name": "Spaghetti Bolognese",
+      "image": "cheesy-garlic-chicken-wraps.jpeg",
       "ingredients": [
         "200g spaghetti",
         "100g minced beef",
@@ -37,6 +38,7 @@
     {
       "id": 2,
       "name": "Chicken Curry",
+      "image": "recette-de-wraps-au-cheeseburger-grillé.jpeg",
       "ingredients": [
         "500g chicken breast",
         "1 onion",
@@ -73,6 +75,7 @@
     {
       "id": 3,
       "name": "Vegetable Stir Fry",
+      "image": "cheesy-garlic-chicken-wraps.jpeg",
       "ingredients": [
         "1 bell pepper",
         "1 carrot",

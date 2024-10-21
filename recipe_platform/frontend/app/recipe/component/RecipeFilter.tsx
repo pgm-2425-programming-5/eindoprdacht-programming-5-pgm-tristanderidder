@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import RecipeItem from "../component/RecipeItem";
 import { Recipe } from "../../types/Recipe";
+import styles from "./styles/RecipeFilter.module.css";
 
 type RecipeFilterProps = {
   recipes: Recipe[];
@@ -26,22 +27,32 @@ export default function RecipeFilter({ recipes }: RecipeFilterProps) {
     }
   }, [selectedCategory, recipes]);
 
+  const uniqueCategories = Array.from(
+    new Set(recipes.map((recipe) => recipe.category))
+  );
+
   return (
     <>
-      <select
-        onChange={(e) => setSelectedCategory(e.target.value)}
-        value={selectedCategory}
-      >
-        <option value="">All</option>
-        {Array.from(new Set(recipes.map((recipe) => recipe.category))).map(
-          (category) => (
-            <option key={category} value={category}>
-              {category}
-            </option>
-          )
-        )}
-      </select>
-      <div>
+      <ul className={`flex flex-col gap-4 mb-6 text-3xl`}>
+        <li
+          onClick={() => setSelectedCategory("")}
+          className={`cursor-pointer w-fit ${selectedCategory === "" ? `font-bold text-accent ${styles.active}` : ""}`}
+        >
+          All
+        </li>
+        {uniqueCategories.map((category) => (
+          <li
+            key={category}
+            onClick={() => setSelectedCategory(category)}
+            className={`cursor-pointer w- ${selectedCategory === category ? `font-bold text-accent ${styles.active}` : ""}`}
+          >
+            {category}
+          </li>
+        ))}
+      </ul>
+
+      {/* Display filtered recipes */}
+      <div className="flex gap-8 flex-wrap">
         {filteredRecipes.map((recipe) => (
           <RecipeItem key={recipe.id} recipe={recipe} />
         ))}

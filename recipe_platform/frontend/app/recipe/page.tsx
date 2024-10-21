@@ -1,5 +1,4 @@
 import React from 'react';
-import RecipeItem from './component/RecipeItem';
 import {promises as fs} from 'fs';
 import path from 'path';
 import {Recipe} from '../types/Recipe';
@@ -19,7 +18,7 @@ export default async function RecipePage() {
 
     return (
       <div>
-        <div className={`flex`}>
+        <div className={`flex justify-around`}>
           <RecipeFilter recipes={recipes} />
         </div>
       </div>

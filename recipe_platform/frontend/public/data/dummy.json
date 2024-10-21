@@ -107,6 +107,116 @@
           "message": "Loved it! My family enjoyed it."
         }
       ]
+    },
+    {
+      "id": 4,
+      "name": "Beef Tacos",
+      "image": "cheesy-garlic-chicken-wraps.jpeg",
+      "ingredients": [
+        "500g ground beef",
+        "1 onion",
+        "2 cloves garlic",
+        "1 packet taco seasoning",
+        "8 taco shells",
+        "1 cup shredded lettuce",
+        "1 cup diced tomatoes",
+        "1 cup shredded cheese",
+        "2 tbsp vegetable oil",
+        "Salt",
+        "Pepper"
+      ],
+      "instructions": [
+        "Heat the vegetable oil in a pan and sauté the chopped onion and garlic until translucent.",
+        "Add the ground beef and cook until browned.",
+        "Stir in the taco seasoning, salt, and pepper. Cook for another 5 minutes.",
+        "Warm the taco shells according to the package instructions.",
+        "Fill the taco shells with the beef mixture and top with lettuce, tomatoes, and cheese."
+      ],
+      "rating": 4.6,
+      "category": "Mexican",
+      "equipment": ["Pan", "Knife", "Cutting board", "Wooden spoon"],
+      "comments": [
+        {
+          "user": "John Doe",
+          "message": "These tacos are amazing!"
+        },
+        {
+          "user": "Jane Smith",
+          "message": "My kids loved these tacos!"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Pancakes",
+      "image": "cheesy-garlic-chicken-wraps.jpeg",
+      "ingredients": [
+        "1 cup flour",
+        "2 tbsp sugar",
+        "1 tbsp baking powder",
+        "1/2 tsp salt",
+        "1 cup milk",
+        "1 egg",
+        "2 tbsp melted butter",
+        "1 tsp vanilla extract"
+      ],
+      "instructions": [
+        "In a bowl, mix the flour, sugar, baking powder, and salt.",
+        "In another bowl, whisk the milk, egg, melted butter, and vanilla extract.",
+        "Pour the wet ingredients into the dry ingredients and mix until just combined.",
+        "Heat a non-stick pan over medium heat and pour 1/4 cup of batter for each pancake.",
+        "Cook until bubbles form on the surface, then flip and cook until golden brown.",
+        "Serve with syrup and your favorite toppings."
+      ],
+      "rating": 4.8,
+      "category": "Breakfast",
+      "equipment": ["Bowl", "Whisk", "Non-stick pan", "Spatula"],
+      "comments": [
+        {
+          "user": "John Doe",
+          "message": "Best pancakes ever!"
+        },
+        {
+          "user": "Jane Smith",
+          "message": "Fluffy and delicious!"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Caesar Salad",
+      "image": "cheesy-garlic-chicken-wraps.jpeg",
+      "ingredients": [
+        "1 head romaine lettuce",
+        "1/2 cup croutons",
+        "1/4 cup grated Parmesan cheese",
+        "1/4 cup Caesar dressing",
+        "1 chicken breast",
+        "2 tbsp olive oil",
+        "Salt",
+        "Pepper"
+      ],
+      "instructions": [
+        "Season the chicken breast with salt and pepper.",
+        "Heat the olive oil in a pan and cook the chicken breast until golden brown and cooked through. Let it cool and slice it.",
+        "Chop the romaine lettuce and place it in a large bowl.",
+        "Add the croutons, Parmesan cheese, and Caesar dressing. Toss to combine.",
+        "Top the salad with the sliced chicken breast.",
+        "Serve immediately."
+      ],
+      "rating": 4.4,
+      "category": "Salad",
+      "equipment": ["Pan", "Knife", "Cutting board", "Large bowl"],
+      "comments": [
+        {
+          "user": "John Doe",
+          "message": "A classic Caesar salad!"
+        },
+        {
+          "user": "Jane Smith",
+          "message": "Healthy and tasty!"
+        }
+      ]
     }
   ]
 }

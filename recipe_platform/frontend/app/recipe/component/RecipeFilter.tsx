@@ -52,7 +52,7 @@ export default function RecipeFilter({ recipes }: RecipeFilterProps) {
       </ul>
 
       {/* Display filtered recipes */}
-      <div className="flex gap-8 flex-wrap">
+      <div className="flex gap-8 flex-wrap w-10/12">
         {filteredRecipes.map((recipe) => (
           <RecipeItem key={recipe.id} recipe={recipe} />
         ))}

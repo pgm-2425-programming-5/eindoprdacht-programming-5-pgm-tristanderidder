@@ -1,13 +1,14 @@
 import React from "react";
-import { Recipe } from "@/types/Recipe";
+import { Recipe } from "../types/Recipe";
 import RecipeFilter from "./component/RecipeFilter";
 
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { gql, request } from "graphql-request";
+import RecipeItem from "./component/RecipeItem";
 
 async function fetchRecipes(): Promise<Recipe[]> {
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || "http://localhost:3000";
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
 
   const query = gql`
     query Recipes {
@@ -28,17 +29,14 @@ async function fetchRecipes(): Promise<Recipe[]> {
         }
         comments {
           documentId
-          users_permissions_user {
-            username
-          }
           comment
         }
       }
     }
   `;
 
-  const data = await request("/api/graphql", query);
-  return data.recipes;
+  const response:{ recipes: Recipe[] } = await request(baseUrl + "/graphql", query);
+  return response.recipes;
 };
 
 export const fetchCache = 'force-no-store';
@@ -74,7 +72,12 @@ export default async function RecipePage(){
 
   return (
     <div>
-      <RecipeFilter recipes={recipes} />
+      {/* <RecipeFilter recipes={recipes} /> */}
+      <ul>
+        {recipes.map((recipe) => (
+          <RecipeItem key={recipe.id} recipe={recipe} />
+        ))}
+      </ul>
     </div>
   );
 }

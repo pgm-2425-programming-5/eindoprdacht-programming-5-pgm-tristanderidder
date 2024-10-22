@@ -35,6 +35,7 @@ export default function CreateRecipeForm() {
       category,
       equipment,
       comments: [],
+      image: ""
     };
 
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";

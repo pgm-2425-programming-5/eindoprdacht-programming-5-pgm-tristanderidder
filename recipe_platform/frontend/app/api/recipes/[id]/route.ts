@@ -28,3 +28,4 @@ export async function DELETE(request: NextRequest, {params}: {params: {id: numbe
   fs.writeFileSync(filePath, JSON.stringify(data));
   return new NextResponse(null, {status: 204});
 }
+

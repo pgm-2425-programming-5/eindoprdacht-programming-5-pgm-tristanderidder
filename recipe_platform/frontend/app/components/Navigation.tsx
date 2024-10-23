@@ -12,13 +12,13 @@ export default function Navigation() {
         <Link className={styles.link} href={"/"}>
           Notifications
         </Link>
-        <Link className={styles.link} href="/recipes">
+        <Link className={styles.link} href="/recipe">
           Chat
         </Link>
-        <Link className={styles.linkColor} href="/addRecipes">
+        <Link className={styles.linkColor} href="/recipe/create">
           Add Recipe
         </Link>
-        <Link className={styles.link} href="/addRecipes">
+        <Link className={styles.link} href="/recipe/create">
           Profile
         </Link>
       </div>

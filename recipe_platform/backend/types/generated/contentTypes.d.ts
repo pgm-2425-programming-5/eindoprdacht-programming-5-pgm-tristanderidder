@@ -516,6 +516,33 @@ export interface ApiCommentComment extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiEquipmentEquipment extends Struct.CollectionTypeSchema {
+  collectionName: 'equipments';
+  info: {
+    singularName: 'equipment';
+    pluralName: 'equipments';
+    displayName: 'equipment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    publishedAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::equipment.equipment'
+    >;
+  };
+}
+
 export interface ApiIngredientIngredient extends Struct.CollectionTypeSchema {
   collectionName: 'ingredients';
   info: {
@@ -600,6 +627,10 @@ export interface ApiRecipeRecipe extends Struct.CollectionTypeSchema {
       'api::instruction.instruction'
     >;
     comments: Schema.Attribute.Relation<'oneToMany', 'api::comment.comment'>;
+    equipment: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::equipment.equipment'
+    >;
     createdAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     publishedAt: Schema.Attribute.DateTime;
@@ -988,6 +1019,7 @@ declare module '@strapi/strapi' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::comment.comment': ApiCommentComment;
+      'api::equipment.equipment': ApiEquipmentEquipment;
       'api::ingredient.ingredient': ApiIngredientIngredient;
       'api::instruction.instruction': ApiInstructionInstruction;
       'api::recipe.recipe': ApiRecipeRecipe;

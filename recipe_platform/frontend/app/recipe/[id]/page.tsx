@@ -1,38 +1,51 @@
 import React from "react";
-import RecipeItem from "../component/RecipeItem";
 import { promises as fs } from "fs";
 import path from "path";
 import { Recipe } from "../../types/Recipe";
 import styles from "./styles/RecipeDetail.module.css";
 
+import { query } from "../../graphql/queries";
+import { gql, request } from "graphql-request";
+
+
 type RecipeProps = {
   params: { id: string };
 };
 
+async function fetchRecipes(): Promise<Recipe[]> {
+  const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+
+  const dataQuery = query;
+
+  const response: { recipes: Recipe[] } = await request(
+    baseUrl + "/graphql",
+    dataQuery
+  );
+  return response.recipes;
+}
+
 export default async function RecipeDetailPage({ params }: RecipeProps) {
-  // Fetch the data from the JSON file
-  const filePath = path.join(process.cwd(), "public/data/dummy.json");
-  const data = await fs.readFile(filePath, "utf-8");
-  const recipes: Recipe[] = JSON.parse(data).recipes;
-  const comments: Comment[] = JSON.parse(data).comments;
+  const recipes = await fetchRecipes();
 
-  // Find the recipe that matches the ID in the URL
-  const recipe = recipes.find((recipe) => recipe.id === parseInt(params.id));
+  // Debug logs to inspect values
+  console.log("params.id:", params.id);
+  console.log("recipes:", recipes);
 
-  // Handle the case when the recipe is not found
+  
+  // Ensure both are trimmed strings when comparing
+  const recipe = recipes.find(
+    (recipe) => recipe.documentId.toString().trim() === params.id.trim()
+  );
+
+  // Handle case when recipe is not found
   if (!recipe) {
+    console.log("No matching recipe found for ID:", params.id);
     return <div>Recipe not found</div>;
   }
 
   return (
     <div>
-      <div className="absolute w-screen h-[50vh] z-0 ">
-        <img
-          src={`/images/${recipe.image}`}
-          alt={recipe.name}
-          className="w-full h-full object-cover"
-        />
-      </div>
+      <div className="absolute w-screen h-[50vh] z-0 "></div>
       <div
         className={`flex flex-col gap-10  relative z-[1] top-[20rem] rounded-2xl text-secondary h-screen ${styles.card}`}
       >
@@ -52,10 +65,10 @@ export default async function RecipeDetailPage({ params }: RecipeProps) {
             <ul className="flex gap-5">
               {recipe.equipment.map((equipment, index) => (
                 <li
-                  className="bg-secondary rounded-2xl w-[10rem] text-primary pl-5 py-5 flex items-center text-xl"
+                  className="bg-secondary rounded-2xl w-[15rem] text-primary pl-5 py-5 flex items-center text-xl"
                   key={index}
                 >
-                  {equipment}
+                  {equipment.name}
                 </li>
               ))}
             </ul>
@@ -68,7 +81,7 @@ export default async function RecipeDetailPage({ params }: RecipeProps) {
                   className="bg-secondary rounded-2xl w-[15rem] text-primary pl-5 py-5 flex items-center text-xl"
                   key={index}
                 >
-                  {ingredient}
+                  {ingredient.amount} {ingredient.name}
                 </li>
               ))}
             </ul>
@@ -79,7 +92,9 @@ export default async function RecipeDetailPage({ params }: RecipeProps) {
               <ol>
                 {recipe.instructions.map((instruction, index) => (
                   <li className="text-accent text-base" key={index}>
-                    {instruction}
+                    <span>
+                      Step {instruction.step}: {instruction.name}
+                    </span>
                   </li>
                 ))}
               </ol>

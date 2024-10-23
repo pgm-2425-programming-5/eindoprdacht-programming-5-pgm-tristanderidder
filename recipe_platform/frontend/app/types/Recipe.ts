@@ -1,12 +1,22 @@
 export type Recipe = {
-  id: number;
+  documentId: number;
   name: string;
-  image: string;
-  ingredients: string[];
-  instructions: string[];
+  image: {
+    url: string;
+  };
+  ingredients: {
+    amount: string;
+    name: string;
+  }[];
+  instructions: {
+    step: string;
+    name: string;
+  }[];
   rating: number;
   category: string;
-  equipment: string[];
+  equipment: {
+    name: string;
+  }[];
   comments: Comment[];
 };
 

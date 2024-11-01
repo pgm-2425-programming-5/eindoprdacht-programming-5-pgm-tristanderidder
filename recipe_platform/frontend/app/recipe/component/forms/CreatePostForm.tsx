@@ -17,17 +17,23 @@ const categories = [
 
 export default function CreateRecipeForm() {
   const [name, setName] = useState("");
-  const [ingredients, setIngredients] = useState<string[]>([""]);
-  const [instructions, setInstructions] = useState<string[]>([""]);
+  const [ingredients, setIngredients] = useState<
+    { amount: string; name: string }[]
+  >([{ amount: "", name: "" }]);
+  const [instructions, setInstructions] = useState<
+    { step: string; name: string }[]
+  >([{ step: "", name: "" }]);
   const [category, setCategory] = useState(categories[0]);
   const [rating, setRating] = useState(0);
-  const [equipment, setEquipment] = useState<string[]>([""]);
+  const [equipment, setEquipment] = useState<{ name: string }[]>([
+    { name: "" },
+  ]);
   const router = useRouter();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     const newRecipe: Recipe = {
-      id: Date.now(),
+      documentId: Date.now(), // Changed from id to documentId to match type
       name,
       ingredients,
       instructions,
@@ -35,10 +41,12 @@ export default function CreateRecipeForm() {
       category,
       equipment,
       comments: [],
-      image: ""
+      image: { url: "" }, // Ensure this matches the expected structure
     };
 
     const baseUrl = process.env.NEXT_PUBLIC_API_URL || "http://localhost:3000";
+    const token = localStorage.getItem("token");
+    console.log("Token:", token);
 
     try {
       const response = await fetch(`${baseUrl}/api/recipes/`, {
@@ -51,7 +59,7 @@ export default function CreateRecipeForm() {
 
       if (response.ok) {
         const result = await response.json();
-        const id = result.id || newRecipe.id;
+        const id = result.id || newRecipe.documentId; // Ensure to use documentId
         router.push(`/recipes/${id}`);
       } else {
         console.error("Failed to create recipe:", response.statusText);
@@ -62,27 +70,34 @@ export default function CreateRecipeForm() {
   };
 
   // Handlers for adding/removing dynamic fields
-  const handleAddField = (
-    setter: React.Dispatch<React.SetStateAction<string[]>>
-  ) => {
-    setter((prev) => [...prev, ""]);
+  const handleAddIngredient = () => {
+    setIngredients((prev) => [...prev, { amount: "", name: "" }]);
+  };
+
+  const handleAddInstruction = () => {
+    setInstructions((prev) => [...prev, { step: "", name: "" }]);
+  };
+
+  const handleAddEquipment = () => {
+    setEquipment((prev) => [...prev, { name: "" }]);
   };
 
   const handleRemoveField = (
     index: number,
-    setter: React.Dispatch<React.SetStateAction<string[]>>
+    setter: React.Dispatch<React.SetStateAction<any[]>>
   ) => {
     setter((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleInputChange = (
     index: number,
+    field: string,
     value: string,
-    setter: React.Dispatch<React.SetStateAction<string[]>>
+    setter: React.Dispatch<React.SetStateAction<any[]>>
   ) => {
     setter((prev) => {
       const updated = [...prev];
-      updated[index] = value;
+      updated[index] = { ...updated[index], [field]: value }; // Update specific field
       return updated;
     });
   };
@@ -106,7 +121,7 @@ export default function CreateRecipeForm() {
         />
       </div>
 
-      {/* Ingredients field (dynamically add/remove fields) */}
+      {/* Ingredients field */}
       <div className="flex flex-col">
         <label
           htmlFor="ingredients"
@@ -118,11 +133,26 @@ export default function CreateRecipeForm() {
           <div key={index} className="flex items-center space-x-2 mb-2">
             <input
               type="text"
-              value={ingredient}
+              value={ingredient.amount}
               onChange={(e) =>
-                handleInputChange(index, e.target.value, setIngredients)
+                handleInputChange(
+                  index,
+                  "amount",
+                  e.target.value,
+                  setIngredients
+                )
               }
               className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+              placeholder="Amount"
+            />
+            <input
+              type="text"
+              value={ingredient.name}
+              onChange={(e) =>
+                handleInputChange(index, "name", e.target.value, setIngredients)
+              }
+              className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+              placeholder="Ingredient Name"
             />
             <button
               type="button"
@@ -135,14 +165,14 @@ export default function CreateRecipeForm() {
         ))}
         <button
           type="button"
-          onClick={() => handleAddField(setIngredients)}
+          onClick={handleAddIngredient}
           className="text-blue-500"
         >
           Add Ingredient
         </button>
       </div>
 
-      {/* Instructions field (dynamically add/remove fields) */}
+      {/* Instructions field */}
       <div className="flex flex-col">
         <label
           htmlFor="instructions"
@@ -153,12 +183,32 @@ export default function CreateRecipeForm() {
         {instructions.map((instruction, index) => (
           <div key={index} className="flex items-center space-x-2 mb-2">
             <input
-              type="text"
-              value={instruction}
+              type="number"
+              value={instruction.step}
               onChange={(e) =>
-                handleInputChange(index, e.target.value, setInstructions)
+                handleInputChange(
+                  index,
+                  "step",
+                  e.target.value,
+                  setInstructions
+                )
+              }
+              className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+              placeholder="Step"
+            />
+            <input
+              type="text"
+              value={instruction.name}
+              onChange={(e) =>
+                handleInputChange(
+                  index,
+                  "name",
+                  e.target.value,
+                  setInstructions
+                )
               }
               className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+              placeholder="Instruction"
             />
             <button
               type="button"
@@ -171,14 +221,14 @@ export default function CreateRecipeForm() {
         ))}
         <button
           type="button"
-          onClick={() => handleAddField(setInstructions)}
+          onClick={handleAddInstruction}
           className="text-blue-500"
         >
           Add Instruction
         </button>
       </div>
 
-      {/* Equipment field (dynamically add/remove fields) */}
+      {/* Equipment field */}
       <div className="flex flex-col">
         <label htmlFor="equipment" className="mb-2 font-semibold text-gray-700">
           Equipment:
@@ -187,11 +237,12 @@ export default function CreateRecipeForm() {
           <div key={index} className="flex items-center space-x-2 mb-2">
             <input
               type="text"
-              value={equip}
+              value={equip.name}
               onChange={(e) =>
-                handleInputChange(index, e.target.value, setEquipment)
+                handleInputChange(index, "name", e.target.value, setEquipment)
               }
               className="p-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 flex-grow"
+              placeholder="Equipment Name"
             />
             <button
               type="button"
@@ -204,7 +255,7 @@ export default function CreateRecipeForm() {
         ))}
         <button
           type="button"
-          onClick={() => handleAddField(setEquipment)}
+          onClick={handleAddEquipment}
           className="text-blue-500"
         >
           Add Equipment
